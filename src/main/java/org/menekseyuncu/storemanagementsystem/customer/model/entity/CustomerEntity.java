@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.menekseyuncu.storemanagementsystem.common.BaseEntity;
+import org.menekseyuncu.storemanagementsystem.common.model.BaseEntity;
 
 @Getter
 @Setter

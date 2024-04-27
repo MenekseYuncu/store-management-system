@@ -1,4 +1,4 @@
-package org.menekseyuncu.storemanagementsystem.common;
+package org.menekseyuncu.storemanagementsystem.common.exceptions;
 
 import lombok.extern.slf4j.Slf4j;
 import org.menekseyuncu.storemanagementsystem.common.responses.ErrorResponse;

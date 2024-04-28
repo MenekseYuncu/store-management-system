@@ -61,7 +61,7 @@ class CustomerControllerTest {
         );
 
         // When
-        Mockito.doThrow(new ResourceNotFoundException("Resource Not Found"))
+        Mockito.doThrow(new ResourceNotFoundException())
                 .when(customerService).addCustomer(request);
 
         // Then

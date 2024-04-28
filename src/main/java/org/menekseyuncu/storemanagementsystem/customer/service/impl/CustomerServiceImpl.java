@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerServiceImpl implements CustomerService {
+class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
     private static final CustomerAddRequestToCustomerEntityMapper requestToCustomerEntityMapper = CustomerAddRequestToCustomerEntityMapper.INSTANCE;

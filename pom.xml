@@ -17,6 +17,7 @@
         <java.version>17</java.version>
         <lombok.version>1.18.30</lombok.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <hibernate-core.version>6.5.0.Final</hibernate-core.version>
     </properties>
     <dependencies>
 
@@ -77,6 +78,13 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate-core.version}</version>
+        </dependency>
+
 
         <!--    ===============================    -->
         <!--    ===== Database dependencies====    -->

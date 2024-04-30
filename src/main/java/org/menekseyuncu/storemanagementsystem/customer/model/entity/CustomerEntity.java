@@ -9,8 +9,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.menekseyuncu.storemanagementsystem.cart.model.entity.CartEntity;
 import org.menekseyuncu.storemanagementsystem.common.model.BaseEntity;
 import org.menekseyuncu.storemanagementsystem.orders.model.entity.OrderEntity;
@@ -19,9 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@Setter
 @Entity
-@NoArgsConstructor
 @Table(name = "sm_customer")
 public class CustomerEntity extends BaseEntity {
 

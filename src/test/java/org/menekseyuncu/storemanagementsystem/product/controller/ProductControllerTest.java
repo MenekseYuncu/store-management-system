@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.menekseyuncu.storemanagementsystem.common.exceptions.ResourceNotFoundException;
-import org.menekseyuncu.storemanagementsystem.product.controller.request.ProductCreateRequest;
 import org.menekseyuncu.storemanagementsystem.product.controller.request.ProductUpdateRequest;
 import org.menekseyuncu.storemanagementsystem.product.model.domain.Product;
 import org.menekseyuncu.storemanagementsystem.product.service.ProductService;

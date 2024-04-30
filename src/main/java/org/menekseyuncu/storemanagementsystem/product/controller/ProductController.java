@@ -8,6 +8,7 @@ import org.menekseyuncu.storemanagementsystem.product.controller.request.Product
 import org.menekseyuncu.storemanagementsystem.product.controller.request.ProductUpdateRequest;
 import org.menekseyuncu.storemanagementsystem.product.controller.response.ProductResponse;
 import org.menekseyuncu.storemanagementsystem.product.model.domain.Product;
+import org.menekseyuncu.storemanagementsystem.product.model.mapper.ProductCreateRequestToProductMapper;
 import org.menekseyuncu.storemanagementsystem.product.model.mapper.ProductToProductResponseMapper;
 import org.menekseyuncu.storemanagementsystem.product.service.ProductService;
 import org.springframework.validation.annotation.Validated;
@@ -28,6 +29,7 @@ class ProductController {
 
     private final ProductService productService;
     private static final ProductToProductResponseMapper productToResponseMapper = ProductToProductResponseMapper.INSTANCE;
+    private static final ProductCreateRequestToProductMapper productToRequestMapper = ProductCreateRequestToProductMapper.INSTANCE;
 
     @GetMapping("/{id}")
     public BaseResponse<ProductResponse> getProduct(
@@ -42,7 +44,8 @@ class ProductController {
     public BaseResponse<Void> createProduct(
             @Valid @RequestBody ProductCreateRequest productCreateRequest
     ) {
-        productService.createProduct(productCreateRequest);
+        Product product = productToRequestMapper.map(productCreateRequest);
+        productService.createProduct(product);
         return BaseResponse.SUCCESS;
     }
 

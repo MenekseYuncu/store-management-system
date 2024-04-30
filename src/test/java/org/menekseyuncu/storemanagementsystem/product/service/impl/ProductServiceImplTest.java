@@ -4,12 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.menekseyuncu.storemanagementsystem.common.exceptions.ResourceNotFoundException;
-import org.menekseyuncu.storemanagementsystem.product.controller.request.ProductCreateRequest;
 import org.menekseyuncu.storemanagementsystem.product.controller.request.ProductUpdateRequest;
 import org.menekseyuncu.storemanagementsystem.product.model.domain.Product;
 import org.menekseyuncu.storemanagementsystem.product.model.entity.ProductEntity;
-import org.menekseyuncu.storemanagementsystem.product.model.mapper.ProductCreateRequestToProductEntityMapper;
 import org.menekseyuncu.storemanagementsystem.product.model.mapper.ProductEntityToDomainMapper;
+import org.menekseyuncu.storemanagementsystem.product.model.mapper.ProductToProductEntityMapper;
 import org.menekseyuncu.storemanagementsystem.product.model.mapper.ProductUpdateRequestToProductEntityMapper;
 import org.menekseyuncu.storemanagementsystem.product.repository.ProductRepository;
 import org.mockito.ArgumentMatchers;
@@ -31,7 +30,7 @@ class ProductServiceImplTest {
     @InjectMocks
     private ProductServiceImpl productService;
 
-    private static final ProductCreateRequestToProductEntityMapper productCreateRequestToProductEntity = ProductCreateRequestToProductEntityMapper.INSTANCE;
+    private static final ProductToProductEntityMapper productToProductEntityMapper = ProductToProductEntityMapper.INSTANCE;
     private static final ProductUpdateRequestToProductEntityMapper productUpdateRequestToProductEntity = ProductUpdateRequestToProductEntityMapper.INSTANCE;
     private static final ProductEntityToDomainMapper productEntityToDomain = ProductEntityToDomainMapper.INSTANCE;
 
@@ -80,11 +79,10 @@ class ProductServiceImplTest {
     @Test
     void givenCreateProduct_whenSaveFails_thenThrowException() {
         // Given
-        ProductCreateRequest request = new ProductCreateRequest(
-                null,
-                null,
-                null
-        );
+        Product request = new Product();
+        request.setName(null);
+        request.setPrice(null);
+        request.setStock(15L);
 
         // When
         Mockito.when(productRepository.save(ArgumentMatchers.any(ProductEntity.class)))
@@ -101,12 +99,12 @@ class ProductServiceImplTest {
     @Test
     void givenCreateProduct_thenSaveProductEntity() {
         // Given
-        ProductCreateRequest request = new ProductCreateRequest(
-                "Test",
-                BigDecimal.valueOf(100),
-                14L
-        );
-        ProductEntity productEntity = productCreateRequestToProductEntity.map(request);
+        Product request = new Product();
+        request.setName(null);
+        request.setPrice(null);
+        request.setStock(15L);
+
+        ProductEntity productEntity = productToProductEntityMapper.map(request);
 
         // When
         Mockito.when(productRepository.save(ArgumentMatchers.any(ProductEntity.class)))

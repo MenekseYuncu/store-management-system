@@ -84,14 +84,10 @@ class ProductControllerTest {
     @Test
     void givenCreateProduct_whenValidInput_thenReturnSuccess() throws Exception {
         // Given
-        ProductCreateRequest request = new ProductCreateRequest(
-                "Test",
-                BigDecimal.valueOf(1000),
-                10L
-        );
+        Product request = new Product();
 
         // When
-        Mockito.doNothing().when(productService).createProduct(Mockito.any(ProductCreateRequest.class));
+        Mockito.doNothing().when(productService).createProduct(Mockito.any(Product.class));
 
         // Then
         mockMvc.perform(MockMvcRequestBuilders.post(BASE_URL)
@@ -106,7 +102,10 @@ class ProductControllerTest {
     @Test
     void givenCreateProduct_whenInvalidInput_thenReturnBadRequest() throws Exception {
         // Given
-        ProductCreateRequest request = new ProductCreateRequest("Test", null, null);
+        Product request = new Product();
+        request.setName(null);
+        request.setPrice(null);
+        request.setStock(15L);
 
         // When
         Mockito.doThrow(new ResourceNotFoundException()).when(productService).createProduct(request);

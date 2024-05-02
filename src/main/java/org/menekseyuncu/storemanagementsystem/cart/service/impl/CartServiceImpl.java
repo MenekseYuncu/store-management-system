@@ -34,7 +34,7 @@ class CartServiceImpl implements CartService {
     public Cart getCart(Long customerId) {
         CartEntity cartEntity = cartRepository.findByCustomerId(customerId);
 
-        if (cartEntity == null) {
+        if (cartEntity == null || cartEntity.isDeleted()) {
             throw new ResourceNotFoundException();
         }
         cartEntity.getCartItems().listIterator();

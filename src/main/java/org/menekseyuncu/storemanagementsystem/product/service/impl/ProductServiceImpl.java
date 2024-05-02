@@ -27,8 +27,13 @@ class ProductServiceImpl implements ProductService {
         ProductEntity productEntity = productRepository.findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
 
+        if (productEntity.isDeleted()) {
+            throw new ResourceNotFoundException();
+        }
+
         return productEntityToDomain.map(productEntity);
     }
+
 
     @Override
     public void createProduct(Product product) {

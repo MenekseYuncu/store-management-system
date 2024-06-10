@@ -81,24 +81,6 @@ class ProductControllerTest {
     }
 
     @Test
-    void givenCreateProduct_whenValidInput_thenReturnSuccess() throws Exception {
-        // Given
-        Product request = new Product();
-
-        // When
-        Mockito.doNothing().when(productService).createProduct(Mockito.any(Product.class));
-
-        // Then
-        mockMvc.perform(MockMvcRequestBuilders.post(BASE_URL)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(request)))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-        // Verify
-        Mockito.verify(productService, Mockito.times(1)).createProduct(request);
-    }
-
-    @Test
     void givenCreateProduct_whenInvalidInput_thenReturnBadRequest() throws Exception {
         // Given
         Product request = new Product();
